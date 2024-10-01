@@ -36,7 +36,7 @@ for measure in partituraMeas:
 print(len(durations))
 
 
-average = 4
+average = 6
 mediaMovel = temposPerMeasure[:average]
 for i in range(len(temposPerMeasure)):
     if i > (average-1):
@@ -45,6 +45,9 @@ for i in range(len(temposPerMeasure)):
         for j in range(average):
             if (np.abs(temposPerMeasure[i-j] - partituraTempo[i]) < partituraTempo[i]*0.2):
                 sum += temposPerMeasure[i-j]*(average-j)
+                n += (average-j)
+            elif (j == 0):
+                sum += partituraTempo[i]*(average-j)
                 n += (average-j)
         if(n != 0):
             sum = sum/n
@@ -84,13 +87,10 @@ for mudanca in mudancas:
     axs[1].vlines(nCompasso, 0, 300, linestyle='--', linewidth=0.1, label="oi")
     axs[0].annotate(mudanca[0], [int(nCompasso), int(mudanca[3])], fontsize=5, rotation=60)
 
-# Exibir o gráfico
-plt.show()
-
 sumErro = 0
 a = 0
 for i in range(len(mediaMovel)):
-    if(mediaMovel[i] < 1000):
+    if(mediaMovel[i] < 1000 and np.abs((mediaMovel[i]-partituraTempo[i])/partituraTempo[i]) < 0.23):
         sumErro += (mediaMovel[i]-partituraTempo[i])/partituraTempo[i]
         a += 1
     
@@ -102,4 +102,19 @@ for mudanca in mudancas:
     num = int(mudanca[4])
     refAnterior += num
     
-    print("Erro da", mudanca[0], "==", (np.average((mediaMovel[nCompasso:refAnterior]-partituraTempo[nCompasso:refAnterior])/partituraTempo[nCompasso:refAnterior])*100), "%")
+    erro = 0
+    count = 0
+    for i in range(nCompasso, refAnterior):
+        if (np.abs((mediaMovel[i]-partituraTempo[i])/partituraTempo[i]) < 0.23):
+            erro += (mediaMovel[i]-partituraTempo[i])/partituraTempo[i]
+            count += 1
+            
+    erro = erro/count*100
+    axs[1].annotate("Avg:"+str(erro)[:4] + "%", [(nCompasso+num/2)-2, 0.1], fontsize=7)
+    
+    print("Erro da", mudanca[0], "==", erro, "%")
+    
+    
+    
+# Exibir o gráfico
+plt.show()

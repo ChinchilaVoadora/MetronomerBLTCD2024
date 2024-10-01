@@ -66,18 +66,19 @@ mudancas = np.array([["Ijexa - 4/4 - 105",                  0,      4,      105,
                      ["Aquarela Solo - 4/4 - 140",          138,    4,      140,    26],    # daqui pra cima acho q ta check
                      ["Bhangra desengatada - 3/4 - 140",    164,    3,      140,    3],
                      ["Bhangra makonha - 4/4 - 187",        167,    4,      187,    18],    
-                     ["Bhangra Solo - 4/4 - 187",           185,    4,      187,    33],    # nao tenho certeza
+                     ["Bhangra Solo - 4/4 - 187",           185,    4,      187,    17],    
+                     ["Bhangra Resto - 4/4 - 187",          185,    4,      187,    14],                        
                      ["Samba - 4/4 - 140",                  218,    4,      140,    6],     # daqui pra baixo check
                      ["Tois - 4/4 - 140",                   224,    4,      140,    37],
                      ["Samba em 6 - 6/4 - 140",             261,    6,      140,    2],
-                     ["Brastemp - 4/4 - 140",               263,    4,      140,    20],
+                     ["Brastemp - 4/4 - 140",               263,    4,      140,    19],
                      ["Jongo - 4/4 - 140",                  283,    4,      140,    13],
                      ["Pare - 4/4 - 140",                   296,    4,      140,    12],
-                     ["Flamenco Intro - 7/4 - 140",         308,    7,      140,    1],     # PUTARIO NAO SEI
-                     ["Flamenco REAL - 4/4 - 93",           309,    4,      93,     11],    # PUTARIA
-                     ["Flamenco CERNE - 12/8 - 93",         320,    12,     93,     22],    # PUTARIA
-                     ["Flamenco FINAL - 3/4 - 140",         342,    3,      140,    0],     # PUTARIA
-                     ["Samba - 4/4 - 140",                  335,    4,      140,    4],     # daqui pra baixo ta certo
+                     #["Flamenco Intro - 7/4 - 140",         308,    7,      140,    1],     # PUTARIO NAO SEI
+                     #["Flamenco REAL - 4/4 - 93",           309,    4,      93,     11],    # PUTARIA
+                     #["Flamenco CERNE - 12/8 - 93",         320,    12,     93,     22],    # PUTARIA
+                     #["Flamenco FINAL - 3/4 - 140",         342,    3,      140,    0],     # PUTARIA
+                     #["Samba - 4/4 - 140",                  335,    4,      140,    4],     # daqui pra baixo ta certo
                      ["N sei - 4/4 - 140",                  349,    4,      140,    14],
                      ["Solo pinico - 4/4 - 140",            363,    4,      140,    27],
                      ["Makulele - 4/4 - 140",               390,    4,      140,    12],
@@ -85,8 +86,8 @@ mudancas = np.array([["Ijexa - 4/4 - 105",                  0,      4,      105,
                      ["Whiskas LENTO - 4/4 - 93",           406,    4,      93,     15],    # errado
                      ["SOLO DE SEXO - 4/4 - 196",           421,    4,      196,    14],    # errado
                      ["BLACK HAHAHA - 4/4 - 196",           435,    4,      196,    16],    # errado
-                     ["Frevo - 4/4 - 196",                  451,    4,      196,    17],
-                     ["Saksifufu - 4/4 - 140",              468,    4,      140,    17],    # nao sei se ta certo
+                     ["Frevo - 4/4 - 196",                  451,    4,      196,    17],    # começa qnd o chocalho entra
+                     ["Saksifufu - 4/4 - 140",              468,    4,      140,    17],    # acho q ta certo
                      ["Hunter - 4/4 - 140",                 485,    4,      140,    31],
                      ["Samba - 4/4 - 140",                  485,    4,      140,    6],
                      ["Bilu intro - 3/4 - 140",             523,    3,      140,    5],
@@ -98,8 +99,8 @@ mudancas = np.array([["Ijexa - 4/4 - 105",                  0,      4,      105,
                      ["Timpanos - 4/4 - 140",               570,    4,      140,    16],
                      ["Caveça - 4/4 - 140",                 586,    4,      140,    32],
                      ["Samba - 4/4 - 140",                  622,    4,      140,    8],
-                     ["Dinossauro - 4/4 - 140",             622,    4,      140,    17],
-                     ["Pre final - 3/4 - 140",              639,    3,      140,    2],
+                     ["Dinossauro - 4/4 - 140",             622,    4,      140,    19],
+                     #["Pre final - 3/4 - 140",              639,    3,      140,    2],
                      ["CABO - 4/4 - 140",                   641,    4,      140,    1]
                      ]) 
 
