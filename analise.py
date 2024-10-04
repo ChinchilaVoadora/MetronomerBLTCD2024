@@ -36,7 +36,7 @@ for measure in partituraMeas:
 print(len(durations))
 
 
-average = 6
+average = 3
 mediaMovel = temposPerMeasure[:average]
 for i in range(len(temposPerMeasure)):
     if i > (average-1):
@@ -75,8 +75,6 @@ axs[1].plot(x, (mediaMovel-partituraTempo)/partituraTempo)
 axs[1].set_ylim(-0.3, 0.3)
 axs[1].sharex(axs[0])
 
-axs[1].hlines(0, 0, len(partituraTempo), linestyle='--', linewidth=0.6)
-
 
 refAnterior = 0
 for mudanca in mudancas:
@@ -93,10 +91,20 @@ for i in range(len(mediaMovel)):
     if(mediaMovel[i] < 1000 and np.abs((mediaMovel[i]-partituraTempo[i])/partituraTempo[i]) < 0.23):
         sumErro += (mediaMovel[i]-partituraTempo[i])/partituraTempo[i]
         a += 1
-    
+
+errosCompasso = np.array((mediaMovel - partituraTempo)/partituraTempo)
+media = np.average(errosCompasso)
+stdDev = np.std(errosCompasso)
+
+errosViradas = np.empty([0, 2])
 print("Erro total da apresentaçao:", sumErro/a*100, "%")
+print("Desvio padrao de: " + str(stdDev*100) + "%")  
 print("\nErro por virada:")
+
 refAnterior = 0
+bpmStd = np.empty([0, 2])
+startStd = np.empty([0])
+endStd = np.empty([0])
 for mudanca in mudancas:
     nCompasso = refAnterior
     num = int(mudanca[4])
@@ -108,13 +116,26 @@ for mudanca in mudancas:
         if (np.abs((mediaMovel[i]-partituraTempo[i])/partituraTempo[i]) < 0.23):
             erro += (mediaMovel[i]-partituraTempo[i])/partituraTempo[i]
             count += 1
+
+    bpmStd = np.append(bpmStd, [[partituraTempo[nCompasso]+stdDev*partituraTempo[nCompasso], partituraTempo[nCompasso]-stdDev*partituraTempo[nCompasso]]], axis=0)
+    startStd = np.append(startStd, 2*[nCompasso])
+    endStd = np.append(endStd, 2*[refAnterior])
             
     erro = erro/count*100
     axs[1].annotate("Avg:"+str(erro)[:4] + "%", [(nCompasso+num/2)-2, 0.1], fontsize=7)
     
-    print("Erro da", mudanca[0], "==", erro, "%")
+    #print("Erro da", mudanca[0], "==", erro, "%")
+    oi = np.array([[mudanca[0], (str(erro)[:4] + "%")]])
+    errosViradas = np.append(errosViradas, oi, axis=0)
     
-    
+print(len(bpmStd), len(startStd), len(endStd), len(mudancas))
+axs[0].hlines(bpmStd, startStd, endStd, linewidth=0.4, linestyle='--', colors='tab:red')
+axs[1].hlines([0, stdDev, -stdDev], 0, len(partituraTempo), linestyle='--', linewidth=0.6, colors=['tab:blue', 'tab:red', 'tab:red'])
+
+df = pd.DataFrame(errosViradas)
+print(errosViradas)
+
+df.to_csv("erros.csv", header=False, index=False)
     
 # Exibir o gráfico
 plt.show()
